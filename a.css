@@ -1,0 +1,46 @@
+html{
+	overflow: hidden;
+}
+#app{
+	width: 100%;
+}
+@font-face{
+	font-family: blabla;
+	src: url('./TSCu_Comic.ttf');
+}
+body{
+	background-color: #222;
+	font-size: 30px;
+	font-family: blabla;
+	color: white;
+	margin:0;
+	/*display: flex;
+	justify-content: center;
+	vertical-align: middle;
+	align-items: center;*/
+}
+.btn{
+	outline: white solid 2px;
+	transition: background-color 1s;
+	padding: 10px;
+}
+.btn:hover{
+	background-color: rgb(150,150,150);
+}
+.frm{
+	text-align: center;
+	width:100%;
+	position: absolute;
+}
+#div_game{
+	margin-top:10%;
+}
+.nf-enter-active{
+	transition: transform 1s;
+}
+.nf-enter{
+	transform: scale(0);
+}
+.nf-enter-to{
+	transform: scale(1);
+}

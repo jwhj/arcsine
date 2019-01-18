@@ -1,0 +1,86 @@
+<!doctype html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
+		<script src="vue.min.js"></script>
+		<link rel="stylesheet"href="a.css"/>
+		<script src="a.js"></script>
+	</head>
+	<body onload="init()"onkeydown="HandleKey(event)">
+		<div id="app">
+			<transition name="nf">
+				<div id="div_menu"class="frm"v-show="ps=='menu'">
+					<h1>Arcsine</h1>
+					<div class="btn":style="{width:wbtn,display:'inline-block'}"@click="ps='game';InitGame()">Start</div>
+				</div>
+			</transition>
+			<transition name="nf">
+				<div id='div_game'class="frm"v-show="ps=='game'">
+					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
+						<span class="btn"@click="ps='menu'">Back</span>
+						<span class="btn"@click="InitGame()">Restart</span>
+					</div>
+					<table :style="{width:wtbl,margin:'auto'}">
+						<tr>
+							<td>Life</td>
+							<td><progress :value="life":max="mxlife":style="spgb">Life</progress></td>
+						</tr>
+						<tr>
+							<td>Rounds</td>
+							<td>{{rd}}</td>
+						</tr>
+						<tr>
+							<td width="30%">sin x</td>
+							<td width="70%">{{vsin}}</td>
+						</tr>
+						<tr>
+							<td>x</td>
+							<td :style="{color:cans}">{{ans}}</td>
+						</tr>
+					</table>
+					<table :style="{width:wtbl,margin:'auto'}">
+						<tr v-for="i in 3">
+							<td v-for="j in 3"@click="_HandleKey((i-1)*3+j+48)">{{(i-1)*3+j}}</td>
+						</tr>
+						<tr>
+							<td @click="_HandleKey(8)">&lt;</td>
+							<td @click="_HandleKey(48)">0</td>
+							<td @click="_HandleKey(13)">s</td>
+						</tr>
+					</table>
+				</div>
+			</transition>
+		</div>
+		<script>
+			var vm=new Vue({
+				el:"#app",
+				data:{
+					ps:'menu',
+					flag:1,
+					ans:'',
+					theta:0,
+					life:0,
+					mxlife:20,
+					rd:0,
+					cans:'white',
+					wbtn:'33%',
+					wtbl:'50%',
+					spgb:{}
+				},
+				computed:{
+					vsin:function(){
+						return Math.sin(this.theta/180*Math.PI).toFixed(6);
+					}
+				}
+			});
+			with (document.documentElement){
+				if (clientWidth<clientHeight){
+					vm.wbtn='80%';
+					vm.wtbl='100%';
+					vm.spgb={width:'100%'};
+				}
+			}
+		</script>
+	</body>
+</html>
