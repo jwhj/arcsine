@@ -20,7 +20,7 @@ function gen(){
 function InitGame(){
 	//show('div_game');
 	gen();
-	vm.life=vm.mxlife; vm.rd=0; vm.ans=''; vm.cans='white';
+	vm.life=vm.mxlife; vm.rd=0; vm.ans=''; vm.cans='white'; vm.flag=1;
 }
 function correct(){
 	with (vm){
@@ -29,7 +29,7 @@ function correct(){
 		var delta=Math.abs(ans-theta)
 		if (ans!=theta) setTimeout(correct,delta<10?50:10);
 		else{
-			if (vm.life>0) ++vm.rd;
+			++vm.rd;
 		}
 	}
 }
