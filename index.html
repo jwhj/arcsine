@@ -12,7 +12,8 @@
 			<transition name="nf">
 				<div id="div_menu"class="frm"v-show="ps=='menu'">
 					<h1>Arcsine</h1>
-					<div class="btn":style="{width:wbtn,display:'inline-block'}"@click="ps='game';InitGame()">Start</div>
+					<div class="btn b1":style="{width:wbtn}"@click="ps='game';InitGame()">Start</div><br/>
+					<div class="btn b1":style="{width:wbtn}"@click="ps='help'">Help</div>
 				</div>
 			</transition>
 			<transition name="nf">
@@ -44,11 +45,27 @@
 							<td v-for="j in 3"@click="_HandleKey((i-1)*3+j+48)">{{(i-1)*3+j}}</td>
 						</tr>
 						<tr>
-							<td @click="_HandleKey(8)">&lt;</td>
-							<td @click="_HandleKey(48)">0</td>
-							<td @click="_HandleKey(13)">s</td>
+							<td style="width:33%"@click="_HandleKey(8)">&lt;-</td>
+							<td style="width:33%"@click="_HandleKey(48)">0</td>
+							<td style="width:33%"@click="_HandleKey(13)">ENTER</td>
 						</tr>
 					</table>
+				</div>
+			</transition>
+			<transition name="nf">
+				<div id="div_help"class="frm"v-show="ps=='help'">
+					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
+						<span class="btn"@click="ps='menu'">Back</span>
+					</div>
+					<p>
+						As you keneng have noticed, my English isn't very hao. Suoyi the shengxia  part would not be in Yingyu.
+					</p>
+					<p style="font-size:17px">
+						游戏的目标是根据给定的三角函数值计算反三角函数值，保证答案是1~89中的一个整数. 每回合如果猜对则回复一点生命值，猜错则扣除相当于与正确答案的差的生命值，生命值小于等于0时游戏结束.
+					</p>
+					<p style="font-size:17px">
+						每回合结束后按ENTER开始下一回合.
+					</p>
 				</div>
 			</transition>
 		</div>

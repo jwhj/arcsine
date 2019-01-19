@@ -27,13 +27,18 @@ body{
 .btn:hover{
 	background-color: rgb(150,150,150);
 }
+.b1{
+	margin: 5px;
+	display: inline-block;
+}
 .frm{
 	text-align: center;
 	width:100%;
 	position: absolute;
+	margin-top: 5%;
 }
 #div_game{
-	margin-top:10%;
+	margin-top: 10%;
 }
 .nf-enter-active{
 	transition: transform 1s;
