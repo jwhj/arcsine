@@ -63,7 +63,7 @@
 					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
 						<span class="btn"@click="ps='menu';localStorage.lv=vm.lv">Save</span>
 					</div>
-					<p>懒得写了，能用就行.</p>
+					<p><del>懒得好好写UI了，能用就行.</del></p>
 					<input v-model="lv"/><br/>
 				</div>
 			</transition>
@@ -75,14 +75,11 @@
 					<p>
 						As you keneng have noticed, my English isn't very hao. Suoyi the shengxia  part would not be in Yingyu.
 					</p>
-					<!--<p style="font-size:17px">
-						游戏的目标是根据给定的三角函数值计算反三角函数值，保证答案是1~89中的一个整数. 每回合如果猜对则回复一点生命值，猜错则扣除相当于与正确答案的差的生命值，生命值小于等于0时游戏结束.
+					<p style="font-size:17px">
+						游戏的目标是根据给定的三角函数值计算反三角函数值，保证答案在(0,90)间，且小数部分不超过level位. 每回合若与标准答案差距大于等于0.5，则按照差距扣除生命值，否则回复生命值. 每回合的得分为与标准答案差距的倒数四舍五入后的值，每回合至少得1分，若恰好猜中答案，得分为10^level.
 					</p>
 					<p style="font-size:17px">
 						每回合结束后按ENTER开始下一回合.
-					</p>-->
-					<p>
-						<del>算了这个晚点再写.</del>
 					</p>
 				</div>
 			</transition>
