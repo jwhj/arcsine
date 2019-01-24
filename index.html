@@ -13,11 +13,12 @@
 				<div id="div_menu"class="frm"v-show="ps=='menu'">
 					<h1>Arcsine</h1>
 					<div class="btn b1":style="{width:wbtn}"@click="ps='game';InitGame()">Start</div><br/>
+					<div class="btn b1":style="{width:wbtn}"@click="ps='level'">Select Level</div><br/>
 					<div class="btn b1":style="{width:wbtn}"@click="ps='help'">Help</div>
 				</div>
 			</transition>
 			<transition name="nf">
-				<div id='div_game'class="frm"v-show="ps=='game'">
+				<div class="frm frmGame"v-show="ps=='game'">
 					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
 						<span class="btn"@click="ps='menu'">Back</span>
 						<span class="btn"@click="InitGame()">Restart</span>
@@ -25,11 +26,11 @@
 					<table :style="{width:wtbl,margin:'auto'}">
 						<tr>
 							<td>Life</td>
-							<td><progress :value="life":max="mxlife":style="spgb">Life</progress></td>
+							<td><progress :value="life":max="mxlife*p10":style="spgb">Life</progress></td>
 						</tr>
 						<tr>
-							<td>Rounds</td>
-							<td>{{rd}}</td>
+							<td>Score</td>
+							<td>{{sc}}</td>
 						</tr>
 						<tr>
 							<td width="30%">sin x</td>
@@ -37,7 +38,7 @@
 						</tr>
 						<tr>
 							<td>x</td>
-							<td :style="{color:cans}">{{ans}}</td>
+							<td :style="{color:cans}">{{vans}}</td>
 						</tr>
 					</table>
 					<table :style="{width:wtbl,margin:'auto'}">
@@ -47,24 +48,41 @@
 						<tr>
 							<td style="width:33%"@click="_HandleKey(8)">&lt;-</td>
 							<td style="width:33%"@click="_HandleKey(48)">0</td>
-							<td style="width:33%"@click="_HandleKey(13)">ENTER</td>
+							<td style="width:33%"@click="_HandleKey(190)">.</td>
+						</tr>
+						<tr>
+							<td></td>
+							<td @click="_HandleKey(13)">ENTER</td>
+							<td></td>
 						</tr>
 					</table>
 				</div>
 			</transition>
 			<transition name="nf">
-				<div id="div_help"class="frm"v-show="ps=='help'">
+				<div class="frm"v-show="ps=='level'">
+					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
+						<span class="btn"@click="ps='menu';localStorage.lv=vm.lv">Save</span>
+					</div>
+					<p>懒得写了，能用就行.</p>
+					<input v-model="lv"/><br/>
+				</div>
+			</transition>
+			<transition name="nf">
+				<div class="frm"v-show="ps=='help'">
 					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
 						<span class="btn"@click="ps='menu'">Back</span>
 					</div>
 					<p>
 						As you keneng have noticed, my English isn't very hao. Suoyi the shengxia  part would not be in Yingyu.
 					</p>
-					<p style="font-size:17px">
+					<!--<p style="font-size:17px">
 						游戏的目标是根据给定的三角函数值计算反三角函数值，保证答案是1~89中的一个整数. 每回合如果猜对则回复一点生命值，猜错则扣除相当于与正确答案的差的生命值，生命值小于等于0时游戏结束.
 					</p>
 					<p style="font-size:17px">
 						每回合结束后按ENTER开始下一回合.
+					</p>-->
+					<p>
+						<del>算了这个晚点再写.</del>
 					</p>
 				</div>
 			</transition>
@@ -78,16 +96,26 @@
 					ans:'',
 					theta:0,
 					life:0,
+					sc:0,
 					mxlife:20,
-					rd:0,
+					lv:localStorage.lv?Number(localStorage.lv):0,
 					cans:'white',
 					wbtn:'33%',
 					wtbl:'50%',
 					spgb:{}
 				},
 				computed:{
+					p10:function(){
+						var ans=1;
+						for (var i=0; i<this.lv; ++i) ans*=10;
+						return ans;
+					},
 					vsin:function(){
-						return Math.sin(this.theta/180*Math.PI).toFixed(6);
+						return Math.sin(this.theta/this.p10/180*Math.PI).toFixed(6);
+					},
+					vans:function(){
+						if (this.flag) return this.ans;
+						else return (this.ans/this.p10).toFixed(this.lv);
 					}
 				}
 			});

@@ -37,7 +37,7 @@ body{
 	position: absolute;
 	margin-top: 5%;
 }
-#div_game{
+.frmGame{
 	margin-top: 10%;
 }
 .nf-enter-active{
