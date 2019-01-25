@@ -13,7 +13,7 @@ body{
 	font-size: 30px;
 	font-family: blabla;
 	color: white;
-	margin:0;
+	box-sizing: border-box;
 	/*display: flex;
 	justify-content: center;
 	vertical-align: middle;
@@ -34,7 +34,7 @@ body{
 .frm{
 	text-align: center;
 	width:100%;
-	position: absolute;
+	/*position: absolute;*/
 	margin-top: 5%;
 }
 .frmGame{
