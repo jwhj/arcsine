@@ -43,7 +43,7 @@ function submit(){
 	else vm.life=Math.min(vm.life+vm.p10,vm.mxlife*vm.p10),vm.cans='green';
 	setTimeout(correct);
 }
-function _HandleKey(n){
+function _handleKey(n){
 	if (vm.ps!='game') return;
 	if (vm.flag){
 		var c=String.fromCharCode(n);
@@ -61,6 +61,6 @@ function _HandleKey(n){
 		}
 	}
 }
-function HandleKey(e){
-	_HandleKey(e.keyCode);
+function handleKey(e){
+	_handleKey(e.keyCode);
 }
