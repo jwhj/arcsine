@@ -1,15 +1,8 @@
-function _(s){
-	return document.getElementById(s);
-}
-function show(s){
-	var a=_(s);
-	a.style.display='block';
-	setTimeout(function(){a.style.opacity=1;});
-}
 function init(){
-	/*var a=document.getElementsByClassName('btn');
-	for (var i=0; i<a.length; ++i) a[i].style.padding='10px';*/
-	//show('div_menu');
+	if (localStorage.vm){
+		var a=JSON.parse(localStorage.vm);
+		for (x in a) vm[x]=a[x];
+	}
 }
 function randint(a,b){
 	return Math.floor(Math.random()*(b-a)+a+0.5);
@@ -17,8 +10,7 @@ function randint(a,b){
 function gen(){
 	vm.theta=randint(1,90*vm.p10);
 }
-function InitGame(){
-	//show('div_game');
+function initGame(){
 	gen();
 	vm.life=vm.mxlife*vm.p10; vm.sc=0; vm.ans=''; vm.cans='white'; vm.flag=1;
 }
@@ -63,4 +55,7 @@ function _handleKey(n){
 }
 function handleKey(e){
 	_handleKey(e.keyCode);
+}
+function backup(){
+	localStorage.vm=JSON.stringify(vm._data);
 }
