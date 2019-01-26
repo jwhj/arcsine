@@ -7,7 +7,7 @@
 		<link rel="stylesheet"href="a.css"/>
 		<script src="a.js"></script>
 	</head>
-	<body onload="init()"onunload="backup()"onkeydown="handleKey(event)">
+	<body onload="init()"onunload="backup(1)"onkeydown="handleKey(event)">
 		<div id="app">
 			<transition name="nf">
 				<div id="div_menu"class="frm"v-show="ps=='menu'">
@@ -118,12 +118,12 @@
 				}
 			});
 			with (document.documentElement){
-				if (clientWidth<clientHeight){
-					vm.wbtn='80%';
-					vm.wtbl='100%';
-					vm.spgb={width:'100%'};
-				}
+				var flag=clientWidth<clientHeight;
+				vm.wbtn=flag?'80%':'33%';
+				vm.wtbl=flag?'100%':'50%';
+				vm.spgb=flag?{width:'100%'}:{};
 			}
+			document.addEventListener('visibilitychange',backup);
 		</script>
 	</body>
 </html>

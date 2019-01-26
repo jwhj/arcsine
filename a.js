@@ -52,6 +52,11 @@ function _handleKey(n){
 function handleKey(e){
 	_handleKey(e.keyCode);
 }
-function backup(){
+function backup(flag){
+	if (!flag && document.visibilityState!='hidden') return;
+	if (location.href.indexOf('#clearcache')!=-1){
+		localStorage.removeItem('vm');
+		return;
+	}
 	localStorage.vm=JSON.stringify(vm._data);
 }
