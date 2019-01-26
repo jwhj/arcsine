@@ -85,9 +85,10 @@
 			</transition>
 		</div>
 		<script>
+			var data=localStorage.vm?JSON.parse(localStorage.vm):null;
 			var vm=new Vue({
 				el:"#app",
-				data:{
+				data:data || {
 					ps:'menu',
 					flag:1,
 					ans:'',

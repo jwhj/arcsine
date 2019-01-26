@@ -1,8 +1,4 @@
 function init(){
-	if (localStorage.vm){
-		var a=JSON.parse(localStorage.vm);
-		for (x in a) vm[x]=a[x];
-	}
 }
 function randint(a,b){
 	return Math.floor(Math.random()*(b-a)+a+0.5);
