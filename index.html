@@ -4,7 +4,6 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<meta name="viewport"content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"/>
 		<script src="vue.min.js"></script>
-		<script src="vue-router.min.js"></script>
 		<link rel="stylesheet"href="a.css"/>
 		<script src="a.js"></script>
 	</head>
@@ -22,7 +21,7 @@
 				<div class="frm frmGame"v-show="ps=='game'">
 					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
 						<span class="btn"@click="ps='menu'">Back</span>
-						<span class="btn"@click="InitGame()">Restart</span>
+						<span class="btn"@click="initGame()">Restart</span>
 					</div>
 					<table :style="{width:wtbl,margin:'auto'}">
 						<tr>
@@ -62,7 +61,7 @@
 			<transition name="nf">
 				<div class="frm"v-show="ps=='level'">
 					<div :style="{width:wtbl,height:'50px',display:'inline-block'}">
-						<span class="btn"@click="ps='menu';localStorage.lv=vm.lv">Save</span>
+						<span class="btn"@click="ps='menu'">Back</span>
 					</div>
 					<p><del>懒得好好写UI了，能用就行.</del></p>
 					<input v-model="lv"/><br/>
@@ -86,9 +85,7 @@
 			</transition>
 		</div>
 		<script>
-			var router=new VueRouter();
 			var vm=new Vue({
-				router,
 				el:"#app",
 				data:{
 					ps:'menu',
@@ -98,7 +95,7 @@
 					life:0,
 					sc:0,
 					mxlife:20,
-					lv:localStorage.lv?Number(localStorage.lv):0,
+					lv:0,
 					cans:'white',
 					wbtn:'33%',
 					wtbl:'50%',
