@@ -1,5 +1,3 @@
-function init(){
-}
 function randint(a,b){
 	return Math.floor(Math.random()*(b-a)+a+0.5);
 }
